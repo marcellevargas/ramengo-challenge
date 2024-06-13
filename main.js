@@ -8,6 +8,7 @@ document.querySelector('#app').innerHTML = `
     <div class="hero-container" style="background-image: url(${backgroundImage})">
         <div class="go-container"></div>
         <div class="ilustration-container"></div>
+        <div class="cta-container"></div>
     </div>
 `
 

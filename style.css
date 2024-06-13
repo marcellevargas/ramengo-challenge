@@ -112,10 +112,31 @@ button:focus-visible {
   width: 200px;
   height: 300px;
   background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  left: 35%;
+  transform: translate(-50%, 0);
 }
 
 .ilustration-container {
   width: 200px;
   height: 400px;
   background-color: blue;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-40%, 0);
+}
+
+.cta-container {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+  position: absolute;
+  z-index: 2;
+  left: 35%;
+  transform: translate(-50%, 0);
+  bottom: 0;
 }
