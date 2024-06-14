@@ -106,9 +106,16 @@ button:focus-visible {
   height: 100%;
   max-height: 677px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+header {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  width: 100%;
 }
 
 .go-container {
@@ -169,6 +176,12 @@ button:focus-visible {
     position: relative;
     display: flex;
     justify-content: center;
+  }
+
+  header {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
   }
 
   .go-container {

@@ -2,9 +2,14 @@ import "./style.css";
 import backgroundImage from "./src/assets/backgroundImage.svg";
 import ilustration from "./src/assets/ilustration.svg";
 import arrow from "./src/assets/arrow.svg";
+import logo from "./src/assets/logo.svg";
 
 document.querySelector("#app").innerHTML = `
+    <header>
+    <img class="ilustration-image" src=${logo} />
+    </header>
     <div class="hero-container" style="background-image: url(${backgroundImage})">
+
     <div class="ilustration-container">
         <img class="ilustration-image" src=${ilustration} />
     </div>
