@@ -1,10 +1,7 @@
 import "./style.css";
-// import javascriptLogo from './javascript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.js'
 import backgroundImage from "./src/assets/backgroundImage.svg";
 import ilustration from "./src/assets/ilustration.svg";
-import go from "./src/assets/go.svg";
+import arrow from "./src/assets/arrow.svg";
 
 document.querySelector("#app").innerHTML = `
     <div class="hero-container" style="background-image: url(${backgroundImage})">
@@ -21,8 +18,10 @@ document.querySelector("#app").innerHTML = `
             Create your own ramen and 
             choose your favorite flavour combination!
         </p>
+        <button>
+            order now
+            <img class="" src=${arrow} />
+        </button>
         </div>
     </div>
 `;
-
-// setupCounter(document.querySelector('#counter'))

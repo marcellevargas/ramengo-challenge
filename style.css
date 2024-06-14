@@ -28,7 +28,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -158,6 +157,10 @@ button:focus-visible {
   font-weight: 500;
 }
 
+.cta-container button {
+  display: none;
+}
+
 @media (min-width: 800px) {
   .hero-container {
     width: 100vw;
@@ -167,7 +170,7 @@ button:focus-visible {
     display: flex;
     justify-content: center;
   }
-  
+
   .go-container {
     width: 200px;
     position: absolute;
@@ -181,14 +184,14 @@ button:focus-visible {
   }
 
   .go-container p {
-    writing-mode: vertical-lr; /* Define a escrita de cima para baixo */
+    writing-mode: vertical-lr;
     transform: rotate(180deg);
   }
 
   .go-container h1 {
     font-size: 10rem;
   }
-  
+
   .ilustration-container {
     width: 653px;
     height: 663px;
@@ -199,13 +202,13 @@ button:focus-visible {
     justify-content: center;
     align-items: center;
   }
-  
+
   .ilustration-image {
     max-width: 100%;
     max-height: 100%;
     margin-left: 15%;
   }
-  
+
   .cta-container {
     width: 200px;
     height: 200px;
@@ -215,5 +218,24 @@ button:focus-visible {
     transform: translate(-50%, 0);
     top: 55%;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .cta-container button {
+    display: flex;
+    background-color: #1820EF;
+    width: 213px;
+    height: 60px;
+    border-radius: 50px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-transform: uppercase;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 800;
+    letter-spacing: 1.78px;
   }
 }
