@@ -12,20 +12,98 @@ const options = {
     }
 };
 
+function createBrothItem(data) {
+    console.log(data)
+    const container = document.getElementById('broth-items');
+    container.innerHTML = '';
+
+    data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const img = document.createElement('img');
+        img.src = item.imageInactive;
+        img.className = 'card-image';
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+
+        const title = document.createElement('h3');
+        title.textContent = item.name;
+        title.className = 'card-title';
+
+        const text = document.createElement('p');
+        text.textContent = item.description;
+        text.className = 'card-text';
+
+        body.appendChild(title);
+        body.appendChild(text);
+        card.appendChild(img);
+        card.appendChild(body);
+        container.appendChild(card);
+    });
+}
+
+function createMeatItem(data) {
+    console.log(data)
+    const container = document.getElementById('meat-items');
+    container.innerHTML = '';
+
+    data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const img = document.createElement('img');
+        img.src = item.imageInactive;
+        img.className = 'card-image';
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+
+        const title = document.createElement('h3');
+        title.textContent = item.name;
+        title.className = 'card-title';
+
+        const text = document.createElement('p');
+        text.textContent = item.description;
+        text.className = 'card-text';
+
+        const price = document.createElement('p');
+        price.textContent = item.price;
+        price.className = 'card-price';
+
+        body.appendChild(title);
+        body.appendChild(text);
+        card.appendChild(img);
+        card.appendChild(body);
+        container.appendChild(card);
+    });
+}
+
 function fetchBrothData() {
     fetch('https://api.tech.redventures.com.br/broths',options)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        createBrothItem(data)
     })
     .catch(error => {
         console.error('Error fetching data: ', error);
         alert('Não foi possível obter os dados da API.');
     });
 }
-
+function fetchMeatData() {
+    fetch('https://api.tech.redventures.com.br/proteins',options)
+    .then(response => response.json())
+    .then(data => {
+        createMeatItem(data)
+    })
+    .catch(error => {
+        console.error('Error fetching data: ', error);
+        alert('Não foi possível obter os dados da API.');
+    });
+}
 document.querySelector("#app").innerHTML = `
-    <div class="first-section" style="background-image: url(${backgroundImage})">
+    <section class="first-section" style="background-image: url(${backgroundImage})">
         <div class="sidebar-container">
             <img class="logo-image" src=${logo} />
         </div>
@@ -33,6 +111,7 @@ document.querySelector("#app").innerHTML = `
             <div class="ilustration-container">
                 <img class="ilustration-image" src=${ilustration} />
             </div>
+            <div class="hero-content"> </div>
             <div class="go-container">
                 <div class="go-container">
                     <p> ラーメン </p>
@@ -51,7 +130,20 @@ document.querySelector("#app").innerHTML = `
                 </button>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="broth-section">
+        <h1>First things first: select your favorite broth.</h1>
+        <p>It will give the whole flavor on your ramen soup.</p>
+        <div id="broth-items"> </div>
+    </section>
+
+    <section id="meat-section">
+        <h1>It’s time to choose (or not) your meat!</h1>
+        <p>Some people love, some don’t. We have options for all tastes.</p>
+        <div id="meat-items"></div>
+    </section>
 `;
 
 document.addEventListener('DOMContentLoaded', fetchBrothData);
+document.addEventListener('DOMContentLoaded', fetchMeatData);

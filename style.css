@@ -100,3 +100,73 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+#broth-section,
+#meat-section {
+  background-color: #ffffff;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#broth-section h1,
+#meat-section h1 {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 47.52px;
+  text-align: center;
+  margin: 0;
+  color: #000000;
+}
+
+#broth-section p,
+#meat-section p {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  margin: 0;
+}
+
+#broth-items,
+#meat-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  justify-content: space-evenly;
+  height: 500px;
+}
+
+#broth-items .card,
+#meat-items .card {
+  width: 320px;
+  height: 316px;
+  box-shadow: 0px 4px 12px 0px #E0DBBF99;
+  border-radius: 13px;
+}
+
+#broth-items h3,
+#meat-items h3 {
+  font-family: Rounded Mplus 1c;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 24px;
+  text-align: center;
+  color: #1820EF;
+}
+
+#broth-items p,
+#meat-items p {
+  font-family: Rounded Mplus 1c;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+}
