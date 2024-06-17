@@ -5,6 +5,25 @@ import ilustration from "./src/assets/ilustration.svg";
 import arrow from "./src/assets/arrow.svg";
 import logo from "./src/assets/logo.svg";
 
+const options = {
+    method: 'GET',
+    headers: {
+        'x-api-key': import.meta.env.VITE_API_KEY
+    }
+};
+
+function fetchBrothData() {
+    fetch('https://api.tech.redventures.com.br/broths',options)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+    .catch(error => {
+        console.error('Error fetching data: ', error);
+        alert('Não foi possível obter os dados da API.');
+    });
+}
+
 document.querySelector("#app").innerHTML = `
     <div class="first-section" style="background-image: url(${backgroundImage})">
         <div class="sidebar-container">
@@ -34,3 +53,5 @@ document.querySelector("#app").innerHTML = `
         </div>
     </div>
 `;
+
+document.addEventListener('DOMContentLoaded', fetchBrothData);
