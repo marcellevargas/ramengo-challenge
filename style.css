@@ -151,7 +151,8 @@ button:focus-visible {
 }
 
 #broth-items .card-broth,
-#meat-items .card-meat {
+#meat-items .card-meat,
+.carousel .slides .slide .card-meat {
   width: 320px;
   height: 316px;
   box-shadow: 0px 4px 12px 0px #E0DBBF99;
@@ -163,7 +164,8 @@ button:focus-visible {
 }
 
 #broth-items .card-title,
-#meat-items .card-title {
+#meat-items .card-title,
+.carousel .slides .slide .card-title {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 20px;
   font-weight: 900;
@@ -174,7 +176,8 @@ button:focus-visible {
 }
 
 #broth-items .card-text,
-#meat-items .card-text {
+#meat-items .card-text,
+.carousel .slides .slide .card-text {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -185,7 +188,8 @@ button:focus-visible {
 }
 
 #broth-items .card-price,
-#meat-items .card-price {
+#meat-items .card-price,
+.carousel .slides .slide .card-price {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 20px;
   font-weight: 900;
@@ -195,7 +199,8 @@ button:focus-visible {
 }
 
 .card-broth.active,
-.card-meat.active {
+.card-meat.active,
+.carousel .slides .slide.active {
   background-color: #1820EF;
 }
 
@@ -224,6 +229,7 @@ button:focus-visible {
     position: relative;
     overflow: hidden;
     height: 400px;
+    justify-content: center;
   }
   
   .slides {
@@ -233,11 +239,13 @@ button:focus-visible {
   .slide {
     min-width: 100%;
     transition: opacity 0.5s ease;
-    opacity: 0;
+    /* opacity: 0; */
+    display: none;
   }
   
   .slide.active {
-    opacity: 1;
+    /* opacity: 1; */
+    display: flex;
   }
   
   .indicators {
@@ -251,14 +259,14 @@ button:focus-visible {
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-color: gray;
+    background-color: #E0DBBF;
     border-radius: 50%;
     margin: 0 5px;
     cursor: pointer;
   }
   
   .indicator.active {
-    background-color: white;
+    background-color: #FF4E42;
   }
 
 }

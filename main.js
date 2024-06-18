@@ -135,6 +135,7 @@ function createMeatSlide(data) {
         indicator.addEventListener('click', () => changeSlide(index));
         if (index === 0) {
             indicator.classList.add("active");
+            slide.classList.add('active');
         }
         indicatorsContainer.appendChild(indicator);
     });
