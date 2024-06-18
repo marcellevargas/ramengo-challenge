@@ -6,102 +6,142 @@ import arrow from "./src/assets/arrow.svg";
 import logo from "./src/assets/logo.svg";
 
 const options = {
-    method: 'GET',
-    headers: {
-        'x-api-key': import.meta.env.VITE_API_KEY
-    }
+  method: "GET",
+  headers: {
+    "x-api-key": import.meta.env.VITE_API_KEY,
+  },
 };
 
 function createBrothItem(data) {
-    console.log(data)
-    const container = document.getElementById('broth-items');
-    container.innerHTML = '';
+  const container = document.getElementById("broth-items");
+  container.innerHTML = "";
 
-    data.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
+  data.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "card-broth";
 
-        const img = document.createElement('img');
-        img.src = item.imageInactive;
-        img.className = 'card-image';
+    card.onclick = () => handleClickElement(".card-broth",card, item);
 
-        const body = document.createElement('div');
-        body.className = 'card-body';
+    const img = document.createElement("img");
+    img.src = item.imageInactive;
+    img.className = "card-image";
 
-        const title = document.createElement('h3');
-        title.textContent = item.name;
-        title.className = 'card-title';
+    const body = document.createElement("div");
+    body.className = "card-body";
 
-        const text = document.createElement('p');
-        text.textContent = item.description;
-        text.className = 'card-text';
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+    title.className = "card-title";
 
-        body.appendChild(title);
-        body.appendChild(text);
-        card.appendChild(img);
-        card.appendChild(body);
-        container.appendChild(card);
-    });
+    const text = document.createElement("p");
+    text.textContent = item.description;
+    text.className = "card-text";
+
+    const price = document.createElement("p");
+    price.textContent = `US$ ${item.price}`;
+    price.className = "card-price";
+
+    body.appendChild(title);
+    body.appendChild(text);
+    body.appendChild(price);
+    card.appendChild(img);
+    card.appendChild(body);
+    container.appendChild(card);
+  });
 }
 
 function createMeatItem(data) {
-    console.log(data)
-    const container = document.getElementById('meat-items');
-    container.innerHTML = '';
+    const container = document.getElementById("meat-items");
+    container.innerHTML = "";
+  
+    data.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "card-meat";
+      card.onclick = () => handleClickElement(".card-meat",card, item);
+  
+      const img = document.createElement("img");
+    img.src = item.imageInactive;
+    img.className = "card-image";
 
-    data.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
+    const body = document.createElement("div");
+    body.className = "card-body";
 
-        const img = document.createElement('img');
-        img.src = item.imageInactive;
-        img.className = 'card-image';
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+    title.className = "card-title";
 
-        const body = document.createElement('div');
-        body.className = 'card-body';
+    const text = document.createElement("p");
+    text.textContent = item.description;
+    text.className = "card-text";
 
-        const title = document.createElement('h3');
-        title.textContent = item.name;
-        title.className = 'card-title';
+    const price = document.createElement("p");
+    price.textContent = `US$ ${item.price}`;
+    price.className = "card-price";
 
-        const text = document.createElement('p');
-        text.textContent = item.description;
-        text.className = 'card-text';
-
-        const price = document.createElement('p');
-        price.textContent = item.price;
-        price.className = 'card-price';
-
-        body.appendChild(title);
-        body.appendChild(text);
-        card.appendChild(img);
-        card.appendChild(body);
-        container.appendChild(card);
+    body.appendChild(title);
+    body.appendChild(text);
+    body.appendChild(price);
+    card.appendChild(img);
+    card.appendChild(body);
+    container.appendChild(card);
     });
+  }
+
+function handleClickElement(cardContainerClass,card, item) {
+  document.querySelectorAll(cardContainerClass).forEach((element) => {
+    if (element !== card) {
+      element.classList.remove("active");
+
+      const imgElement = element.querySelector("img");
+      if (imgElement && imgElement.dataset.originalSrc) {
+        imgElement.src = imgElement.dataset.originalSrc;
+      }
+
+      element.childNodes[1].childNodes[0].classList.remove("active");
+      element.childNodes[1].childNodes[1].classList.remove("active");
+      element.childNodes[1].childNodes[2].classList.remove("active");
+    }
+  });
+  card.classList.add("active");
+
+  const imgElement = card.querySelector("img");
+  if (imgElement) {
+    if (!imgElement.dataset.originalSrc) {
+      imgElement.dataset.originalSrc = imgElement.src;
+    }
+    imgElement.src = item.imageActive;
+  }
+
+  card.childNodes[0].src = item.imageActive;
+  card.childNodes[1].childNodes[0].classList.add("active");
+  card.childNodes[1].childNodes[1].classList.add("active");
+  card.childNodes[1].childNodes[2].classList.add("active");
 }
 
 function fetchBrothData() {
-    fetch('https://api.tech.redventures.com.br/broths',options)
-    .then(response => response.json())
-    .then(data => {
-        createBrothItem(data)
+  fetch("https://api.tech.redventures.com.br/broths", options)
+    .then((response) => response.json())
+    .then((data) => {
+      createBrothItem(data);
     })
-    .catch(error => {
-        console.error('Error fetching data: ', error);
-        alert('Não foi possível obter os dados da API.');
+    .catch((error) => {
+      console.error("Error fetching data: ", error);
+      alert("Não foi possível obter os dados da API.");
     });
 }
+
 function fetchMeatData() {
-    fetch('https://api.tech.redventures.com.br/proteins',options)
-    .then(response => response.json())
-    .then(data => {
-        createMeatItem(data)
+  fetch("https://api.tech.redventures.com.br/proteins", options)
+    .then((response) => response.json())
+    .then((data) => {
+      createMeatItem(data);
     })
-    .catch(error => {
-        console.error('Error fetching data: ', error);
-        alert('Não foi possível obter os dados da API.');
+    .catch((error) => {
+      console.error("Error fetching data: ", error);
+      alert("Não foi possível obter os dados da API.");
     });
 }
+
 document.querySelector("#app").innerHTML = `
     <section class="first-section" style="background-image: url(${backgroundImage})">
         <div class="sidebar-container">
@@ -145,5 +185,5 @@ document.querySelector("#app").innerHTML = `
     </section>
 `;
 
-document.addEventListener('DOMContentLoaded', fetchBrothData);
-document.addEventListener('DOMContentLoaded', fetchMeatData);
+document.addEventListener("DOMContentLoaded", fetchBrothData);
+document.addEventListener("DOMContentLoaded", fetchMeatData);

@@ -118,7 +118,7 @@ button:focus-visible {
   font-weight: 900;
   line-height: 47.52px;
   text-align: center;
-  margin: 0;
+  margin: 15px 0px 0px 0px;
   color: #000000;
 }
 
@@ -126,7 +126,7 @@ button:focus-visible {
 #meat-section p {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 24px;
   text-align: center;
   color: #000000;
@@ -143,30 +143,71 @@ button:focus-visible {
   height: 500px;
 }
 
-#broth-items .card,
-#meat-items .card {
+#broth-items .card-body,#meat-items .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#broth-items .card-broth,
+#meat-items .card-meat {
   width: 320px;
   height: 316px;
   box-shadow: 0px 4px 12px 0px #E0DBBF99;
   border-radius: 13px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-#broth-items h3,
-#meat-items h3 {
-  font-family: Rounded Mplus 1c;
+#broth-items .card-title,
+#meat-items .card-title {
+  font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 20px;
   font-weight: 900;
   line-height: 24px;
   text-align: center;
   color: #1820EF;
+  margin: 0;
 }
 
-#broth-items p,
-#meat-items p {
-  font-family: Rounded Mplus 1c;
+#broth-items .card-text,
+#meat-items .card-text {
+  font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 16px;
   text-align: center;
   color: #000000;
+  max-width: 256px;
+}
+
+#broth-items .card-price,
+#meat-items .card-price {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 16px;
+  text-align: center;
+  color: #FF4E42;
+}
+
+.card-broth.active,
+.card-meat.active {
+  background-color: #1820EF;
+}
+
+#broth-items .card-body .card-title.active,
+#broth-items .card-body .card-text.active,
+#meat-items .card-body .card-title.active,
+#meat-items .card-body .card-text.active{
+  color: #FFFFFF; 
+}
+
+
+#broth-items .card-body .card-price.active,
+#meat-items .card-body .card-price.active {
+  color: #FFC024;  
 }
