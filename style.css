@@ -143,7 +143,8 @@ button:focus-visible {
   height: 500px;
 }
 
-#broth-items .card-body,#meat-items .card-body {
+#broth-items .card-body,
+#meat-items .card-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -152,7 +153,8 @@ button:focus-visible {
 
 #broth-items .card-broth,
 #meat-items .card-meat,
-.carousel .slides .slide .card-meat {
+.carousel .slides .slide .card-meat,
+.carousel .broth-slides .broth-slide .card-broth {
   width: 320px;
   height: 316px;
   box-shadow: 0px 4px 12px 0px #E0DBBF99;
@@ -164,8 +166,7 @@ button:focus-visible {
 }
 
 #broth-items .card-title,
-#meat-items .card-title,
-.carousel .slides .slide .card-title {
+#meat-items .card-title {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 20px;
   font-weight: 900;
@@ -176,8 +177,7 @@ button:focus-visible {
 }
 
 #broth-items .card-text,
-#meat-items .card-text,
-.carousel .slides .slide .card-text {
+#meat-items .card-text {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -188,8 +188,7 @@ button:focus-visible {
 }
 
 #broth-items .card-price,
-#meat-items .card-price,
-.carousel .slides .slide .card-price {
+#meat-items .card-price {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 20px;
   font-weight: 900;
@@ -199,22 +198,21 @@ button:focus-visible {
 }
 
 .card-broth.active,
-.card-meat.active,
-.carousel .slides .slide.active {
+.card-meat.active {
   background-color: #1820EF;
 }
 
 #broth-items .card-body .card-title.active,
 #broth-items .card-body .card-text.active,
 #meat-items .card-body .card-title.active,
-#meat-items .card-body .card-text.active{
-  color: #FFFFFF; 
+#meat-items .card-body .card-text.active {
+  color: #FFFFFF;
 }
 
 
 #broth-items .card-body .card-price.active,
 #meat-items .card-body .card-price.active {
-  color: #FFC024;  
+  color: #FFC024;
 }
 
 .carousel {
@@ -222,6 +220,13 @@ button:focus-visible {
 }
 
 @media screen and (max-width: 500px) {
+  #meat-items {
+    display: none;
+  }
+
+  #broth-items {
+    display: none;
+  }
 
   .carousel {
     display: flex;
@@ -230,31 +235,113 @@ button:focus-visible {
     overflow: hidden;
     height: 400px;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
+  .broth-slides,
   .slides {
     transition: transform 0.5s ease;
   }
-  
+
+  .broth-slide,
   .slide {
     min-width: 100%;
     transition: opacity 0.5s ease;
-    /* opacity: 0; */
     display: none;
   }
-  
+
+  #broth-section h1,
+  #meat-section h1 {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    color: #000000;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 31px;
+    text-align: center;
+    width: 328px;
+  }
+
+  #broth-section p,
+  #meat-section p {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    color: #000000;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    width: 326px;
+  }
+
+
+  .broth-slide.active,
   .slide.active {
-    /* opacity: 1; */
     display: flex;
   }
-  
+
+  .card-broth,
+  .card-meat {
+    background-color: #1820EF;
+  }
+
+  .carousel .slides .slide .card-meat,
+  .carousel .broth-slides .broth-slide .card-broth {
+    gap: 10px
+  }
+
+  .card-broth .card-body,
+  .card-meat .card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .carousel .broth-slides .broth-slide .card-title,
+  .carousel .slides .slide .card-title {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: center;
+    color: #ffffff;
+    margin: 0;
+  }
+
+
+  #broth-section .carousel .broth-slides .broth-slide p.card-price,
+  #meat-section .carousel .slides .slide p.card-price {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 16px;
+    text-align: center;
+    color: #FFC024;
+  }
+
+  #broth-section .carousel .broth-slides .broth-slide .card-text,
+  #meat-section .carousel .slides .slide .card-text {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    color: #ffffff;
+    max-width: 256px;
+  }
+
+  .broth-indicators,
   .indicators {
     position: absolute;
     bottom: 10px;
     width: 100%;
     text-align: center;
   }
-  
+
+  .broth-indicator,
   .indicator {
     display: inline-block;
     width: 10px;
@@ -264,7 +351,8 @@ button:focus-visible {
     margin: 0 5px;
     cursor: pointer;
   }
-  
+
+  .broth-indicator.active,
   .indicator.active {
     background-color: #FF4E42;
   }
