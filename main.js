@@ -4,6 +4,7 @@ import backgroundImage from "./src/assets/backgroundImage.svg";
 import ilustration from "./src/assets/ilustration.svg";
 import arrow from "./src/assets/arrow.svg";
 import logo from "./src/assets/logo.svg";
+import { createBrothItem } from './src/components/broth/brothItem.js';
 
 const options = {
   method: "GET",
@@ -12,43 +13,7 @@ const options = {
   },
 };
 
-function createBrothItem(data) {
-  const container = document.getElementById("broth-items");
-  container.innerHTML = "";
 
-  data.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "card-broth";
-
-    card.onclick = () => handleClickElement(".card-broth", card, item);
-
-    const img = document.createElement("img");
-    img.src = item.imageInactive;
-    img.className = "card-image";
-
-    const body = document.createElement("div");
-    body.className = "card-body";
-
-    const title = document.createElement("h3");
-    title.textContent = item.name;
-    title.className = "card-title";
-
-    const text = document.createElement("p");
-    text.textContent = item.description;
-    text.className = "card-text";
-
-    const price = document.createElement("p");
-    price.textContent = `US$ ${item.price}`;
-    price.className = "card-price";
-
-    body.appendChild(title);
-    body.appendChild(text);
-    body.appendChild(price);
-    card.appendChild(img);
-    card.appendChild(body);
-    container.appendChild(card);
-  });
-}
 
 function createBrothSlide(data) {
   const slidesContainer = document.querySelector(".broth-slides");
@@ -273,7 +238,7 @@ function fetchBrothData() {
     .then((response) => response.json())
     .then((data) => {
       createBrothItem(data);
-      createBrothSlide(data)
+      createBrothSlide(data);
     })
     .catch((error) => {
       console.error("Error fetching data: ", error);

@@ -101,8 +101,6 @@ button:focus-visible {
   }
 }
 
-
-#broth-section,
 #meat-section {
   background-color: #ffffff;
   width: 100vw;
@@ -111,7 +109,6 @@ button:focus-visible {
   align-items: center;
 }
 
-#broth-section h1,
 #meat-section h1 {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 32px;
@@ -122,7 +119,6 @@ button:focus-visible {
   color: #000000;
 }
 
-#broth-section p,
 #meat-section p {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 16px;
@@ -133,7 +129,6 @@ button:focus-visible {
   margin: 0;
 }
 
-#broth-items,
 #meat-items {
   display: flex;
   align-items: center;
@@ -143,7 +138,6 @@ button:focus-visible {
   height: 500px;
 }
 
-#broth-items .card-body,
 #meat-items .card-body {
   display: flex;
   flex-direction: column;
@@ -151,10 +145,8 @@ button:focus-visible {
   align-items: center;
 }
 
-#broth-items .card-broth,
 #meat-items .card-meat,
-.carousel .slides .slide .card-meat,
-.carousel .broth-slides .broth-slide .card-broth {
+.carousel .slides .slide .card-meat {
   width: 320px;
   height: 316px;
   box-shadow: 0px 4px 12px 0px #E0DBBF99;
@@ -165,7 +157,6 @@ button:focus-visible {
   justify-content: center;
 }
 
-#broth-items .card-title,
 #meat-items .card-title {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 20px;
@@ -176,7 +167,6 @@ button:focus-visible {
   margin: 0;
 }
 
-#broth-items .card-text,
 #meat-items .card-text {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 14px;
@@ -187,7 +177,6 @@ button:focus-visible {
   max-width: 256px;
 }
 
-#broth-items .card-price,
 #meat-items .card-price {
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: 20px;
@@ -197,20 +186,16 @@ button:focus-visible {
   color: #FF4E42;
 }
 
-.card-broth.active,
 .card-meat.active {
   background-color: #1820EF;
 }
 
-#broth-items .card-body .card-title.active,
-#broth-items .card-body .card-text.active,
 #meat-items .card-body .card-title.active,
 #meat-items .card-body .card-text.active {
   color: #FFFFFF;
 }
 
 
-#broth-items .card-body .card-price.active,
 #meat-items .card-body .card-price.active {
   color: #FFC024;
 }
@@ -221,10 +206,6 @@ button:focus-visible {
 
 @media screen and (max-width: 500px) {
   #meat-items {
-    display: none;
-  }
-
-  #broth-items {
     display: none;
   }
 
@@ -239,19 +220,16 @@ button:focus-visible {
     align-items: center;
   }
 
-  .broth-slides,
   .slides {
     transition: transform 0.5s ease;
   }
 
-  .broth-slide,
   .slide {
     min-width: 100%;
     transition: opacity 0.5s ease;
     display: none;
   }
 
-  #broth-section h1,
   #meat-section h1 {
     font-family: "M PLUS Rounded 1c", sans-serif;
     color: #000000;
@@ -262,7 +240,6 @@ button:focus-visible {
     width: 328px;
   }
 
-  #broth-section p,
   #meat-section p {
     font-family: "M PLUS Rounded 1c", sans-serif;
     color: #000000;
@@ -274,23 +251,18 @@ button:focus-visible {
     width: 326px;
   }
 
-
-  .broth-slide.active,
   .slide.active {
     display: flex;
   }
 
-  .card-broth,
   .card-meat {
     background-color: #1820EF;
   }
 
-  .carousel .slides .slide .card-meat,
-  .carousel .broth-slides .broth-slide .card-broth {
+  .carousel .slides .slide .card-meat {
     gap: 10px
   }
 
-  .card-broth .card-body,
   .card-meat .card-body {
     display: flex;
     justify-content: center;
@@ -300,7 +272,6 @@ button:focus-visible {
   }
 
 
-  .carousel .broth-slides .broth-slide .card-title,
   .carousel .slides .slide .card-title {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-size: 20px;
@@ -312,7 +283,6 @@ button:focus-visible {
   }
 
 
-  #broth-section .carousel .broth-slides .broth-slide p.card-price,
   #meat-section .carousel .slides .slide p.card-price {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-size: 20px;
@@ -322,7 +292,6 @@ button:focus-visible {
     color: #FFC024;
   }
 
-  #broth-section .carousel .broth-slides .broth-slide .card-text,
   #meat-section .carousel .slides .slide .card-text {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-size: 14px;
@@ -333,7 +302,6 @@ button:focus-visible {
     max-width: 256px;
   }
 
-  .broth-indicators,
   .indicators {
     position: absolute;
     bottom: 10px;
@@ -341,7 +309,6 @@ button:focus-visible {
     text-align: center;
   }
 
-  .broth-indicator,
   .indicator {
     display: inline-block;
     width: 10px;
@@ -352,7 +319,6 @@ button:focus-visible {
     cursor: pointer;
   }
 
-  .broth-indicator.active,
   .indicator.active {
     background-color: #FF4E42;
   }
