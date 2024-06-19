@@ -1,6 +1,7 @@
 export function createMeatSlide(data) {
-  const slidesContainer = document.querySelector(".slides");
-  const indicatorsContainer = document.querySelector(".indicators");
+  const container = document.getElementById("meat-carousel");
+  const slidesContainer = container.querySelector(".slides");
+  const indicatorsContainer = container.querySelector(".indicators");
 
   slidesContainer.innerHTML = "";
   indicatorsContainer.innerHTML = "";
@@ -73,50 +74,48 @@ export function createMeatSlide(data) {
     if (index === 0) {
       indicator.classList.add("active");
       slide.classList.add("active");
-    }
-  });
-}
-
-function changeSlide(index) {
-  const slides = document.querySelectorAll(".slide");
-  const indicators = document.querySelectorAll(".indicator");
-
-  slides.forEach((slide, idx) => {
-    if (idx === index) {
-      slide.classList.add("active");
-    } else {
-      slide.classList.remove("active");
+    
+      container.dispatchEvent(new CustomEvent('meatItemSelected', { detail: { meatItem: item.id } }));
     }
   });
 
-  indicators.forEach((indicator, idx) => {
-    if (idx === index) {
-      indicator.classList.add("active");
-    } else {
-      indicator.classList.remove("active");
-    }
-  });
-}
+  function changeSlide(index) {
+    const slides = container.querySelectorAll(".slide");
+    const indicators = container.querySelectorAll(".indicator");
 
-function changeToNextSlide(activeIndex) {
-  const slides = document.querySelectorAll(".slide");
-  if (activeIndex < slides.length - 1) {
-    changeSlide(activeIndex + 1);
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle("active", idx === index);
+      if (idx === index) {
+        const event = new CustomEvent('meatItemSelected', { detail: { meatItem: data[idx].id } });
+        container.dispatchEvent(event);
+      }
+    });
+
+    indicators.forEach((indicator, idx) => {
+      indicator.classList.toggle("active", idx === index);
+    });
   }
-}
 
-function changeToPreviousSlide(activeIndex) {
-  if (activeIndex > 0) {
-    changeSlide(activeIndex - 1);
-  }
-}
-
-function findActiveSlideIndex() {
-  const slides = document.querySelectorAll(".slide");
-  for (let i = 0; i < slides.length; i++) {
-    if (slides[i].classList.contains("active")) {
-      return i;
+  function changeToNextSlide(activeIndex) {
+    const slides = container.querySelectorAll(".slide");
+    if (activeIndex < slides.length - 1) {
+      changeSlide(activeIndex + 1);
     }
   }
-  return -1;
+
+  function changeToPreviousSlide(activeIndex) {
+    if (activeIndex > 0) {
+      changeSlide(activeIndex - 1);
+    }
+  }
+
+  function findActiveSlideIndex() {
+    const slides = container.querySelectorAll(".slide");
+    for (let i = 0; i < slides.length; i++) {
+      if (slides[i].classList.contains("active")) {
+        return i;
+      }
+    }
+    return -1;
+  }
 }

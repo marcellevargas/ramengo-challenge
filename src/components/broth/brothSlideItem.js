@@ -1,4 +1,5 @@
 export function createBrothSlide(data) {
+  const container = document.getElementById("broth-carousel"); 
   const slidesContainer = document.querySelector(".broth-slides");
   const indicatorsBrothContainer = document.querySelector(".broth-indicators");
 
@@ -7,6 +8,7 @@ export function createBrothSlide(data) {
 
   let touchStartX = 0;
   let touchEndX = 0;
+  let slideData = data; 
 
   const handleTouchStart = (event) => {
     touchStartX = event.changedTouches[0].screenX;
@@ -71,52 +73,56 @@ export function createBrothSlide(data) {
     if (index === 0) {
       indicator.classList.add("active");
       slide.classList.add("active");
-    }
-  });
-}
-
-function changeBrothSlide(index) {
-  const slides = document.querySelectorAll(".broth-slide");
-  const indicators = document.querySelectorAll(".broth-indicator");
-
-  slides.forEach((slide, idx) => {
-    if (idx === index) {
-      slide.classList.add("active");
-    } else {
-      slide.classList.remove("active");
+      const event = new CustomEvent('itemSelected', {
+        detail: { brothItem: slideData[index].id }
+      });
+      container.dispatchEvent(event);
     }
   });
 
-  indicators.forEach((indicator, idx) => {
-    if (idx === index) {
-      indicator.classList.add("active");
-    } else {
-      indicator.classList.remove("active");
-    }
-  });
-}
+  function changeBrothSlide(index) {
+    const slides = document.querySelectorAll(".broth-slide");
+    const indicators = document.querySelectorAll(".broth-indicator");
+    
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle("active", idx === index);
+    });
 
-function changeToNextSlide() {
-  const activeIndex = findActiveSlideIndex();
-  const slides = document.querySelectorAll(".broth-slide");
-  if (activeIndex < slides.length - 1) {
-    changeBrothSlide(activeIndex + 1);
-  }
-}
+    indicators.forEach((indicator, idx) => {
+      indicator.classList.toggle("active", idx === index);
+    });
 
-function changeToPreviousSlide() {
-  const activeIndex = findActiveSlideIndex();
-  if (activeIndex > 0) {
-    changeBrothSlide(activeIndex - 1);
-  }
-}
-
-function findActiveSlideIndex() {
-  const slides = document.querySelectorAll(".broth-slide");
-  for (let i = 0; i < slides.length; i++) {
-    if (slides[i].classList.contains("active")) {
-      return i;
+    if (index >= 0 && index < slideData.length) {
+      const event = new CustomEvent('itemSelected', {
+        detail: { brothItem: slideData[index].id }
+      });
+      document.dispatchEvent(event);
     }
   }
-  return -1; 
+
+  function changeToNextSlide() {
+    const activeIndex = findActiveSlideIndex();
+    if (activeIndex < slideData.length - 1) {
+      changeBrothSlide(activeIndex + 1);
+    }
+  }
+
+  function changeToPreviousSlide() {
+    const activeIndex = findActiveSlideIndex();
+    if (activeIndex > 0) {
+      changeBrothSlide(activeIndex - 1);
+    }
+  }
+
+  function findActiveSlideIndex() {
+    const slides = document.querySelectorAll(".broth-slide");
+    for (let i = 0; i < slides.length; i++) {
+      if (slides[i].classList.contains("active")) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  return { changeBrothSlide, findActiveSlideIndex };
 }

@@ -7,7 +7,13 @@ export function createMeatItem(data) {
   data.forEach((item) => {
     const card = document.createElement("div");
     card.className = "card-meat";
-    card.onclick = () => handleClickElement(".card-meat", card, item);
+    card.onclick = () => {
+      handleClickElement(".card-meat", card, item);
+      const event = new CustomEvent("itemSelected", {
+        detail: { meatItem: item.id },
+      });
+      container.dispatchEvent(event);
+    };
 
     const img = document.createElement("img");
     img.src = item.imageInactive;

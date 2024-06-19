@@ -8,7 +8,13 @@ export function createBrothItem(data) {
     const card = document.createElement("div");
     card.className = "card-broth";
 
-    card.onclick = () => handleClickElement(".card-broth", card, item);
+    card.onclick = () => {
+      handleClickElement(".card-broth", card, item);
+      const event = new CustomEvent("itemSelected", {
+        detail: { brothItem: item.id },
+      });
+      container.dispatchEvent(event);
+    };
 
     const img = document.createElement("img");
     img.src = item.imageInactive;

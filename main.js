@@ -16,6 +16,11 @@ const options = {
   },
 };
 
+const order = {
+  brothId: 0,
+  proteinId: 0,
+};
+
 function fetchBrothData() {
   fetch("https://api.tech.redventures.com.br/broths", options)
     .then((response) => response.json())
@@ -44,24 +49,40 @@ function handleClick(event) {
   switch (event.target.id) {
     case "order-button":
       event.preventDefault();
-      const destination = document.querySelector('#broth-section');
-    
+      const destination = document.querySelector("#broth-section");
+
       if (destination) {
-          destination.scrollIntoView({ behavior: 'smooth' });
+        destination.scrollIntoView({ behavior: "smooth" });
       }
       break;
 
     case "finish-order-button":
-      const activeCards = document.querySelectorAll(
-        ".broth-slide.active, .slide.active"
-      );
-
-      console.log(activeCards)
+      pushOrder(order);
       break;
 
     default:
       break;
   }
+}
+
+function pushOrder(order) {
+  const postOptions = {
+    method: "POST",
+    headers: {
+      "x-api-key": import.meta.env.VITE_API_KEY,
+    },
+    body: JSON.stringify(order),
+    mode: "cors",
+  };
+
+  fetch("https://api.tech.redventures.com.br/orders", postOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      alert("Não foi possível enviar os dados para API.");
+    });
 }
 
 document.querySelector("#app").innerHTML = `
@@ -101,7 +122,7 @@ document.querySelector("#app").innerHTML = `
         <p>It will give the whole flavor on your ramen soup.</p>
         <div id="broth-items"> </div>
         <div id="broth-carousel" class="carousel">
-            <div class="broth-slides"></div>
+            <div id="broth-slides" class="broth-slides"></div>
             <div class="broth-indicators"></div>
         </div>
     </section>
@@ -110,7 +131,7 @@ document.querySelector("#app").innerHTML = `
         <h1>It’s time to choose (or not) your meat!</h1>
         <p>Some people love, some don’t. We have options for all tastes.</p>
         <div id="meat-items"></div>
-        <div class="carousel">
+        <div id="meat-carousel" class="carousel">
             <div class="slides"></div>
             <div class="indicators"></div>
         </div>
@@ -141,15 +162,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function updateButtonVisibility() {
-    const activeCards = document.querySelectorAll(
-      ".broth-slide.active, .slide.active"
-    );
     const isSmallScreen = window.matchMedia("(max-width: 500px)").matches;
 
     finishOrderButton.disabled =
-      activeCards.length > 1 || isSmallScreen ? false : true;
+      (order.brothId > 0 && order.proteinId > 0) || isSmallScreen
+        ? false
+        : true;
     finishOrderButton.enabled =
-      activeCards.length > 1 || isSmallScreen ? true : false;
+      (order.brothId > 0 && order.proteinId > 0) || isSmallScreen
+        ? true
+        : false;
   }
 
   const observer = new MutationObserver(function (mutations) {
@@ -170,4 +192,25 @@ document.addEventListener("DOMContentLoaded", function () {
   observer.observe(targetNode, config);
 
   updateButtonVisibility();
+
+  const containerBrothItem = document.getElementById("broth-items");
+  containerBrothItem.addEventListener("itemSelected", (event) => {
+    order.brothId = event.detail.brothItem;
+  });
+  const containerMeatItem = document.getElementById("meat-items");
+  containerMeatItem.addEventListener("itemSelected", (event) => {
+    order.proteinId = event.detail.meatItem;
+  });
+
+  const containerBrothSlideItem = document.getElementById("broth-carousel");
+  containerBrothSlideItem.addEventListener("itemSelected", (event) => {
+    order.brothId = event.detail.brothItem;
+    console.log("Selected item data:", order.brothId);
+  });
+
+  const containerMeatSlideItem = document.getElementById("meat-carousel");
+  containerMeatSlideItem.addEventListener("meatItemSelected", (event) => {
+    order.proteinId = event.detail.meatItem;
+    console.log("Selected meat item data:", order.proteinId);
+  });
 });
