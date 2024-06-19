@@ -1,5 +1,5 @@
-import "./style.css";
-import "./firstSection.css";
+import "./src/style/style.css";
+import "./src/style/firstSection.css";
 import backgroundImage from "./src/assets/backgroundImage.svg";
 import ilustration from "./src/assets/ilustration.svg";
 import arrow from "./src/assets/arrow.svg";
@@ -76,12 +76,20 @@ function pushOrder(order) {
   };
 
   fetch("https://api.tech.redventures.com.br/orders", postOptions)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status === 201) {
+        return response.json(); 
+      } else {
+        throw new Error('Pedido não criado.'); 
+      }
+    })
     .then((data) => {
       console.log(data);
+      const params = new URLSearchParams(data).toString();
+      window.location.href = `/success?${params}`;
     })
     .catch((error) => {
-      alert("Não foi possível enviar os dados para API.");
+      alert("Não foi possível enviar os dados para API: " + error.message);
     });
 }
 
