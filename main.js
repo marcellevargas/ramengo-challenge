@@ -163,9 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
   observer.observe(targetNode, config);
   updateButtonVisibility();
 
-  fetchBrothData();
-  fetchMeatData();
-
   if (isSmallScreen) {
     const containerBrothSlideItem = document.getElementById("broth-carousel");
     containerBrothSlideItem.addEventListener("itemSelected", (event) => {
@@ -176,7 +173,6 @@ document.addEventListener("DOMContentLoaded", function () {
     containerMeatSlideItem.addEventListener("meatItemSelected", (event) => {
       order.proteinId = event.detail.meatItem;
     });
-    console.log(order)
   } else {
     const containerBrothItem = document.getElementById("broth-items");
     containerBrothItem.addEventListener("itemSelected", (event) => {
@@ -186,6 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
     containerMeatItem.addEventListener("itemSelected", (event) => {
       order.proteinId = event.detail.meatItem;
     });
-    console.log(order)
   }
+
+  fetchBrothData();
+  fetchMeatData();
 });
