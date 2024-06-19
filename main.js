@@ -5,6 +5,9 @@ import ilustration from "./src/assets/ilustration.svg";
 import arrow from "./src/assets/arrow.svg";
 import logo from "./src/assets/logo.svg";
 import { createBrothItem } from './src/components/broth/brothItem.js';
+import { createMeatItem } from './src/components/meat/meatItem.js';
+import { createBrothSlide } from './src/components/broth/brothSlideItem.js';
+import { createMeatSlide } from './src/components/meat/meatSlideItem.js';
 
 const options = {
   method: "GET",
@@ -12,226 +15,6 @@ const options = {
     "x-api-key": import.meta.env.VITE_API_KEY,
   },
 };
-
-
-
-function createBrothSlide(data) {
-  const slidesContainer = document.querySelector(".broth-slides");
-  const indicatorsBrothContainer = document.querySelector(".broth-indicators");
-
-  slidesContainer.innerHTML = "";
-  indicatorsBrothContainer.innerHTML = "";
-
-  data.forEach((item, index) => {
-      const slide = document.createElement("div");
-      slide.className = "broth-slide";
-
-      const card = document.createElement("div");
-      card.className = "card-broth";
-      card.onclick = () => handleClickElement(".card-broth", card, item);
-
-      const img = document.createElement("img");
-      img.src = item.imageActive;
-      img.className = "card-image";
-
-      const body = document.createElement("div");
-      body.className = "card-body";
-
-      const title = document.createElement("h3");
-      title.textContent = item.name;
-      title.className = "card-title";
-
-      const text = document.createElement("p");
-      text.textContent = item.description;
-      text.className = "card-text";
-
-      const price = document.createElement("p");
-      price.textContent = `US$ ${item.price}`;
-      price.className = "card-price";
-
-      body.appendChild(title);
-      body.appendChild(text);
-      body.appendChild(price);
-      card.appendChild(img);
-      card.appendChild(body);
-
-      slide.appendChild(card);
-      slidesContainer.appendChild(slide);
-
-      const indicator = document.createElement("span");
-      indicator.className = "broth-indicator";
-      indicator.addEventListener('click', () => changeBrothSlide(index));
-      if (index === 0) {
-          indicator.classList.add("active");
-          slide.classList.add('active');
-      }
-      indicatorsBrothContainer.appendChild(indicator);
-  });
-}
-
-function createMeatItem(data) {
-  const container = document.getElementById("meat-items");
-  container.innerHTML = "";
-
-  data.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "card-meat";
-    card.onclick = () => handleClickElement(".card-meat", card, item);
-
-    const img = document.createElement("img");
-    img.src = item.imageInactive;
-    img.className = "card-image";
-
-    const body = document.createElement("div");
-    body.className = "card-body";
-
-    const title = document.createElement("h3");
-    title.textContent = item.name;
-    title.className = "card-title";
-
-    const text = document.createElement("p");
-    text.textContent = item.description;
-    text.className = "card-text";
-
-    const price = document.createElement("p");
-    price.textContent = `US$ ${item.price}`;
-    price.className = "card-price";
-
-    body.appendChild(title);
-    body.appendChild(text);
-    body.appendChild(price);
-    card.appendChild(img);
-    card.appendChild(body);
-    container.appendChild(card);
-  });
-}
-
-function createMeatSlide(data) {
-    const slidesContainer = document.querySelector(".slides");
-    const indicatorsContainer = document.querySelector(".indicators");
-
-    slidesContainer.innerHTML = "";
-    indicatorsContainer.innerHTML = "";
-
-    data.forEach((item, index) => {
-        const slide = document.createElement("div");
-        slide.className = "slide";
-
-        const card = document.createElement("div");
-        card.className = "card-meat";
-        card.onclick = () => handleClickElement(".card-meat", card, item);
-
-        const img = document.createElement("img");
-        img.src = item.imageActive;
-        img.className = "card-image";
-
-        const body = document.createElement("div");
-        body.className = "card-body";
-
-        const title = document.createElement("h3");
-        title.textContent = item.name;
-        title.className = "card-title";
-
-        const text = document.createElement("p");
-        text.textContent = item.description;
-        text.className = "card-text";
-
-        const price = document.createElement("p");
-        price.textContent = `US$ ${item.price}`;
-        price.className = "card-price";
-
-        body.appendChild(title);
-        body.appendChild(text);
-        body.appendChild(price);
-        card.appendChild(img);
-        card.appendChild(body);
-
-        slide.appendChild(card);
-        slidesContainer.appendChild(slide);
-
-        const indicator = document.createElement("span");
-        indicator.className = "indicator";
-        indicator.addEventListener('click', () => changeSlide(index));
-        if (index === 0) {
-            indicator.classList.add("active");
-            slide.classList.add('active');
-        }
-        indicatorsContainer.appendChild(indicator);
-    });
-}
-
-function changeSlide(index) {
-    const slides = document.querySelectorAll('.slide');
-    const indicators = document.querySelectorAll('.indicator');
-
-    slides.forEach((slide, idx) => {
-        if (idx === index) {
-            slide.classList.add('active');
-        } else {
-            slide.classList.remove('active');
-        }
-    });
-
-    indicators.forEach((indicator, idx) => {
-        if (idx === index) {
-            indicator.classList.add('active');
-        } else {
-            indicator.classList.remove('active');
-        }
-    });
-}
-
-function changeBrothSlide(index) {
-  const slides = document.querySelectorAll('.broth-slide');
-  const indicators = document.querySelectorAll('.broth-indicator');
-
-  slides.forEach((slide, idx) => {
-      if (idx === index) {
-          slide.classList.add('active');
-      } else {
-          slide.classList.remove('active');
-      }
-  });
-
-  indicators.forEach((indicator, idx) => {
-      if (idx === index) {
-          indicator.classList.add('active');
-      } else {
-          indicator.classList.remove('active');
-      }
-  });
-}
-
-function handleClickElement(cardContainerClass, card, item) {
-  document.querySelectorAll(cardContainerClass).forEach((element) => {
-    if (element !== card) {
-      element.classList.remove("active");
-
-      const imgElement = element.querySelector("img");
-      if (imgElement && imgElement.dataset.originalSrc) {
-        imgElement.src = imgElement.dataset.originalSrc;
-      }
-
-      element.childNodes[1].childNodes[0].classList.remove("active");
-      element.childNodes[1].childNodes[1].classList.remove("active");
-      element.childNodes[1].childNodes[2].classList.remove("active");
-    }
-  });
-  card.classList.add("active");
-
-  const imgElement = card.querySelector("img");
-  if (imgElement) {
-    if (!imgElement.dataset.originalSrc) {
-      imgElement.dataset.originalSrc = imgElement.src;
-    }
-    imgElement.src = item.imageActive;
-  }
-
-  card.childNodes[0].src = item.imageActive;
-  card.childNodes[1].childNodes[0].classList.add("active");
-  card.childNodes[1].childNodes[1].classList.add("active");
-  card.childNodes[1].childNodes[2].classList.add("active");
-}
 
 function fetchBrothData() {
   fetch("https://api.tech.redventures.com.br/broths", options)
@@ -311,6 +94,9 @@ document.querySelector("#app").innerHTML = `
 
 `;
 
-document.addEventListener("DOMContentLoaded", fetchBrothData);
-document.addEventListener("DOMContentLoaded", fetchMeatData);
+document.addEventListener("DOMContentLoaded", function() {
+  fetchBrothData();
+  fetchMeatData();
+});
+
 console.log(document.querySelectorAll('div.active'))
