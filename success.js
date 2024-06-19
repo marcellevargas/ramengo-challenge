@@ -1,3 +1,6 @@
+import "./src/style/success.css";
+import "./src/style/reset.css";
+
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
 
@@ -5,16 +8,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const description = params.get('description');
     const image = params.get('image');
 
-    console.log('ID:', id);
-    console.log('Description:', decodeURIComponent(description));
-    console.log('Image URL:', decodeURIComponent(image));
+    const productImage = document.getElementsByClassName("product-image")[0];
+    productImage.src = decodeURIComponent(image);
 
-    const contentDiv = document.getElementById('content');
-    if (contentDiv) {
-        contentDiv.innerHTML = `
-            <h1>${decodeURIComponent(description)}</h1>
-            <img src="${decodeURIComponent(image)}" alt="${decodeURIComponent(description)}">
-            <p>ID: ${id}</p>
-        `;
-    }
+    const productTitle = document.getElementsByClassName("product-title")[0];
+    productTitle.innerText = decodeURIComponent(description);
+
+    const newOrderButton = document.getElementById("new-order")
+    newOrderButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        window.location.href = `/`;
+    }); 
 });

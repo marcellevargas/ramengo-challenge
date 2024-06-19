@@ -1,14 +1,32 @@
-<!-- novaPagina.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success</title>
 </head>
+
 <body>
-    <h1>Success</h1>
-    <div id="content"></div>
-    <script src="success.js"></script>
+    <div class="success-container">
+        <div class="product-container">
+            <img class="product-image" src="" alt="background image">
+            <p>Your order:</p>
+            <h2 class="product-title"></h2>
+        </div>
+        <div class="order-container">
+            <img class="order-image" src="./src/assets/bowing.svg" alt="Bowing Image">
+            <p>どもありがとうございます</p>
+            <h2 class="order-title">Your order is being prepared</h2>
+            <h5 class="order-subtitle">Hold on, when you least expect you will be eating your rámen.</h5>
+            <button id="new-order">
+                Place new order
+                <img src="./src/assets/arrow.svg" />
+            </button>
+        </div>
+    </div>
+
+    <script type="module" src="/success.js"></script>
 </body>
+
 </html>
