@@ -1,3 +1,5 @@
+import "../../style/meatItem.css";
+
 export function createMeatSlide(data) {
   const container = document.getElementById("meat-carousel");
   const slidesContainer = container.querySelector(".slides");

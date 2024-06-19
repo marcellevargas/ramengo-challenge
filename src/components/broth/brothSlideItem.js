@@ -1,3 +1,5 @@
+import "../../style/brothItem.css";
+
 export function createBrothSlide(data) {
   const container = document.getElementById("broth-carousel"); 
   const slidesContainer = document.querySelector(".broth-slides");

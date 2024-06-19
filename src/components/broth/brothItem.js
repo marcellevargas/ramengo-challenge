@@ -1,4 +1,4 @@
-import "./brothItem.css";
+import "../../style/brothItem.css";
 
 export function createBrothItem(data) {
   const container = document.getElementById("broth-items");

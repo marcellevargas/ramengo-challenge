@@ -1,4 +1,4 @@
-import "./meatItem.css";
+import "../../style/meatItem.css";
 
 export function createMeatItem(data) {
   const container = document.getElementById("meat-items");

@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 10px 0;
 }
 
 .sidebar-container .logo-image {
@@ -95,6 +96,7 @@
     .sidebar-container {
         align-items: center;
         justify-content: flex-start;
+        margin: 0;
     }
 
     .sidebar-container .logo-image {
@@ -112,8 +114,9 @@
     }
 
     .ilustration-image {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 90%;
+        max-height: 90%;
+        width: 600px;
     }
 
     .go-container {
@@ -142,7 +145,7 @@
         height: 200px;
         position: absolute;
         z-index: 2;
-        left: 27%;
+        left: 20%;
         transform: translate(-50%, 0);
         top: 55%;
         text-align: left;
@@ -165,5 +168,9 @@
         font-family: "M PLUS Rounded 1c", sans-serif;
         font-weight: 800;
         letter-spacing: 1.78px;
+    }
+
+    .cta-container p {
+        text-align: left;
     }
 }
