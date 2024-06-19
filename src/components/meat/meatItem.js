@@ -1,3 +1,5 @@
+import "./meatItem.css";
+
 export function createMeatItem(data) {
   const container = document.getElementById("meat-items");
   container.innerHTML = "";

@@ -37,53 +37,55 @@ h1 {
   line-height: 1.1;
 }
 
-#app {
-  max-width: 1280px;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
 .card {
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
-}
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  display: flex;
+  width: 213px;
+  height: 60px;
+  border-radius: 50px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  text-transform: uppercase;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 800;
+  letter-spacing: 1.78px;
+  border: none;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  border-color: #646cff;
+  box-shadow: 0px 4px 12px 0px #E0DBBF99;
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  box-shadow: 0px 4px 12px 0px #E0DBBF99;
+}
+
+button:enabled {
+  background-color: #1820EF;
+  cursor: pointer;
+}
+
+button:disable {
+  background-color: gray;
+  color: #ccc ;
+  cursor: not-allowed ;
+}
+
+#finish-order {
+  width: 100%;
+  display: flex;
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 15px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -99,228 +101,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
-
-#meat-section {
-  background-color: #ffffff;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#meat-section h1 {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 32px;
-  font-weight: 900;
-  line-height: 47.52px;
-  text-align: center;
-  margin: 15px 0px 0px 0px;
-  color: #000000;
-}
-
-#meat-section p {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  text-align: center;
-  color: #000000;
-  margin: 0;
-}
-
-#meat-items {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  justify-content: space-evenly;
-  height: 500px;
-}
-
-#meat-items .card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-
-#meat-items .card-meat,
-.carousel .slides .slide .card-meat {
-  width: 320px;
-  height: 316px;
-  box-shadow: 0px 4px 12px 0px #E0DBBF99;
-  border-radius: 13px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-#meat-items .card-title {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 20px;
-  font-weight: 900;
-  line-height: 24px;
-  text-align: center;
-  color: #1820EF;
-  margin: 0;
-}
-
-#meat-items .card-text {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 16px;
-  text-align: center;
-  color: #000000;
-  max-width: 256px;
-}
-
-#meat-items .card-price {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-size: 20px;
-  font-weight: 900;
-  line-height: 16px;
-  text-align: center;
-  color: #FF4E42;
-}
-
-.card-meat.active {
-  background-color: #1820EF;
-}
-
-#meat-items .card-body .card-title.active,
-#meat-items .card-body .card-text.active {
-  color: #FFFFFF;
-}
-
-
-#meat-items .card-body .card-price.active {
-  color: #FFC024;
-}
-
-.carousel {
-  display: none;
-}
-
-@media screen and (max-width: 500px) {
-  #meat-items {
-    display: none;
-  }
-
-  .carousel {
-    display: flex;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    height: 400px;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .slides {
-    transition: transform 0.5s ease;
-  }
-
-  .slide {
-    min-width: 100%;
-    transition: opacity 0.5s ease;
-    display: none;
-  }
-
-  #meat-section h1 {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    color: #000000;
-    font-size: 24px;
-    font-weight: 900;
-    line-height: 31px;
-    text-align: center;
-    width: 328px;
-  }
-
-  #meat-section p {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    color: #000000;
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: center;
-    width: 326px;
-  }
-
-  .slide.active {
-    display: flex;
-  }
-
-  .card-meat {
-    background-color: #1820EF;
-  }
-
-  .carousel .slides .slide .card-meat {
-    gap: 10px
-  }
-
-  .card-meat .card-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-
-  .carousel .slides .slide .card-title {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    line-height: 24px;
-    text-align: center;
-    color: #ffffff;
-    margin: 0;
-  }
-
-
-  #meat-section .carousel .slides .slide p.card-price {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    line-height: 16px;
-    text-align: center;
-    color: #FFC024;
-  }
-
-  #meat-section .carousel .slides .slide .card-text {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    text-align: center;
-    color: #ffffff;
-    max-width: 256px;
-  }
-
-  .indicators {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-  }
-
-  .indicator {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #E0DBBF;
-    border-radius: 50%;
-    margin: 0 5px;
-    cursor: pointer;
-  }
-
-  .indicator.active {
-    background-color: #FF4E42;
-  }
-
 }

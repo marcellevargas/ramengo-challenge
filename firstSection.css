@@ -161,4 +161,9 @@
         font-weight: 800;
         letter-spacing: 1.78px;
     }
+
+    .cta-container p {
+        text-align: center;
+        width: 300px;
+    }
 }

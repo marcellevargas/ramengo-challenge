@@ -4,10 +4,10 @@ import backgroundImage from "./src/assets/backgroundImage.svg";
 import ilustration from "./src/assets/ilustration.svg";
 import arrow from "./src/assets/arrow.svg";
 import logo from "./src/assets/logo.svg";
-import { createBrothItem } from './src/components/broth/brothItem.js';
-import { createMeatItem } from './src/components/meat/meatItem.js';
-import { createBrothSlide } from './src/components/broth/brothSlideItem.js';
-import { createMeatSlide } from './src/components/meat/meatSlideItem.js';
+import { createBrothItem } from "./src/components/broth/brothItem.js";
+import { createMeatItem } from "./src/components/meat/meatItem.js";
+import { createBrothSlide } from "./src/components/broth/brothSlideItem.js";
+import { createMeatSlide } from "./src/components/meat/meatSlideItem.js";
 
 const options = {
   method: "GET",
@@ -24,7 +24,6 @@ function fetchBrothData() {
       createBrothSlide(data);
     })
     .catch((error) => {
-      console.error("Error fetching data: ", error);
       alert("Não foi possível obter os dados da API.");
     });
 }
@@ -34,12 +33,31 @@ function fetchMeatData() {
     .then((response) => response.json())
     .then((data) => {
       createMeatItem(data);
-      createMeatSlide(data)
+      createMeatSlide(data);
     })
     .catch((error) => {
-      console.error("Error fetching data: ", error);
       alert("Não foi possível obter os dados da API.");
     });
+}
+
+function handleClick(event) {
+  switch (event.target.id) {
+    case "order-button":
+      event.preventDefault();
+      const destination = document.querySelector('#broth-section');
+    
+      if (destination) {
+          destination.scrollIntoView({ behavior: 'smooth' });
+      }
+      break;
+
+    case "finish-order-button":
+      window.location.href = '/#broth-section';
+      break;
+
+    default:
+      break;
+  }
 }
 
 document.querySelector("#app").innerHTML = `
@@ -64,9 +82,11 @@ document.querySelector("#app").innerHTML = `
                     Create your own ramen and 
                     choose your favorite flavour combination!
                 </p>
-                <button>
+                <button
+                  id="order-button"
+                >
                     order now
-                    <img class="" src=${arrow} />
+                    <img src=${arrow} />
                 </button>
             </div>
         </div>
@@ -76,7 +96,7 @@ document.querySelector("#app").innerHTML = `
         <h1>First things first: select your favorite broth.</h1>
         <p>It will give the whole flavor on your ramen soup.</p>
         <div id="broth-items"> </div>
-        <div class="carousel">
+        <div id="broth-carousel" class="carousel">
             <div class="broth-slides"></div>
             <div class="broth-indicators"></div>
         </div>
@@ -92,11 +112,58 @@ document.querySelector("#app").innerHTML = `
         </div>
     </section>
 
+    <section id="finish-order">
+      <button id="finish-order-button">
+          Place my order
+          <img src=${arrow} />
+      </button>
+    </section>
 `;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   fetchBrothData();
   fetchMeatData();
-});
 
-console.log(document.querySelectorAll('div.active'))
+  const orderButton = document.getElementById("order-button");
+  const finishOrderButton = document.getElementById("finish-order-button");
+  const targetNode = document.body;
+
+  orderButton.addEventListener("click", function (event) {
+    handleClick(event);
+  });
+
+  finishOrderButton.addEventListener("click", function (event) {
+    handleClick(event);
+  });
+
+  function updateButtonVisibility() {
+    const activeCards = document.querySelectorAll(
+      ".card-broth.active, .card-meat.active"
+    );
+    const isSmallScreen = window.matchMedia("(max-width: 500px)").matches;
+
+    finishOrderButton.disabled =
+      activeCards.length > 1 || isSmallScreen ? false : true;
+    finishOrderButton.enabled =
+      activeCards.length > 1 || isSmallScreen ? true : false;
+  }
+
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.type === "childList" || mutation.type === "attributes") {
+        updateButtonVisibility();
+      }
+    });
+  });
+
+  const config = {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class"],
+  };
+
+  observer.observe(targetNode, config);
+
+  updateButtonVisibility();
+});

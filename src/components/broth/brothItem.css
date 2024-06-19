@@ -97,13 +97,17 @@
     color: #FFC024;
 }
 
-.carousel {
+#broth-carousel {
     display: none;
 }
 
 @media screen and (max-width: 500px) {
     #broth-items {
         display: none;
+    }
+
+    #broth-carousel {
+        display: flex;
     }
 
     .carousel {
