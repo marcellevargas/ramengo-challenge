@@ -5,13 +5,35 @@ export function createBrothSlide(data) {
   slidesContainer.innerHTML = "";
   indicatorsBrothContainer.innerHTML = "";
 
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleTouchStart = (event) => {
+    touchStartX = event.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (event) => {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipeGesture();
+  };
+
+  const handleSwipeGesture = () => {
+    if (touchEndX < touchStartX) {
+      changeToNextSlide();
+    } else if (touchEndX > touchStartX) {
+      changeToPreviousSlide();
+    }
+  };
+
+  slidesContainer.addEventListener('touchstart', handleTouchStart);
+  slidesContainer.addEventListener('touchend', handleTouchEnd);
+
   data.forEach((item, index) => {
     const slide = document.createElement("div");
     slide.className = "broth-slide";
 
     const card = document.createElement("div");
     card.className = "card-broth";
-    card.onclick = () => handleClickElement(".card-broth", card, item);
 
     const img = document.createElement("img");
     img.src = item.imageActive;
@@ -44,11 +66,12 @@ export function createBrothSlide(data) {
     const indicator = document.createElement("span");
     indicator.className = "broth-indicator";
     indicator.addEventListener("click", () => changeBrothSlide(index));
+    indicatorsBrothContainer.appendChild(indicator);
+
     if (index === 0) {
       indicator.classList.add("active");
       slide.classList.add("active");
     }
-    indicatorsBrothContainer.appendChild(indicator);
   });
 }
 
@@ -71,4 +94,29 @@ function changeBrothSlide(index) {
       indicator.classList.remove("active");
     }
   });
+}
+
+function changeToNextSlide() {
+  const activeIndex = findActiveSlideIndex();
+  const slides = document.querySelectorAll(".broth-slide");
+  if (activeIndex < slides.length - 1) {
+    changeBrothSlide(activeIndex + 1);
+  }
+}
+
+function changeToPreviousSlide() {
+  const activeIndex = findActiveSlideIndex();
+  if (activeIndex > 0) {
+    changeBrothSlide(activeIndex - 1);
+  }
+}
+
+function findActiveSlideIndex() {
+  const slides = document.querySelectorAll(".broth-slide");
+  for (let i = 0; i < slides.length; i++) {
+    if (slides[i].classList.contains("active")) {
+      return i;
+    }
+  }
+  return -1; 
 }

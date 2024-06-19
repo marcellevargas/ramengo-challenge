@@ -52,7 +52,11 @@ function handleClick(event) {
       break;
 
     case "finish-order-button":
-      window.location.href = '/#broth-section';
+      const activeCards = document.querySelectorAll(
+        ".broth-slide.active, .slide.active"
+      );
+
+      console.log(activeCards)
       break;
 
     default:
@@ -138,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateButtonVisibility() {
     const activeCards = document.querySelectorAll(
-      ".card-broth.active, .card-meat.active"
+      ".broth-slide.active, .slide.active"
     );
     const isSmallScreen = window.matchMedia("(max-width: 500px)").matches;
 

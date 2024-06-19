@@ -5,6 +5,30 @@ export function createMeatSlide(data) {
   slidesContainer.innerHTML = "";
   indicatorsContainer.innerHTML = "";
 
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleTouchStart = (event) => {
+    touchStartX = event.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (event) => {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipeGesture();
+  };
+
+  const handleSwipeGesture = () => {
+    const activeIndex = findActiveSlideIndex();
+    if (touchEndX < touchStartX) {
+      changeToNextSlide(activeIndex);
+    } else if (touchEndX > touchStartX) {
+      changeToPreviousSlide(activeIndex);
+    }
+  };
+
+  slidesContainer.addEventListener('touchstart', handleTouchStart);
+  slidesContainer.addEventListener('touchend', handleTouchEnd);
+
   data.forEach((item, index) => {
     const slide = document.createElement("div");
     slide.className = "slide";
@@ -44,11 +68,12 @@ export function createMeatSlide(data) {
     const indicator = document.createElement("span");
     indicator.className = "indicator";
     indicator.addEventListener("click", () => changeSlide(index));
+    indicatorsContainer.appendChild(indicator);
+
     if (index === 0) {
       indicator.classList.add("active");
       slide.classList.add("active");
     }
-    indicatorsContainer.appendChild(indicator);
   });
 }
 
@@ -71,4 +96,27 @@ function changeSlide(index) {
       indicator.classList.remove("active");
     }
   });
+}
+
+function changeToNextSlide(activeIndex) {
+  const slides = document.querySelectorAll(".slide");
+  if (activeIndex < slides.length - 1) {
+    changeSlide(activeIndex + 1);
+  }
+}
+
+function changeToPreviousSlide(activeIndex) {
+  if (activeIndex > 0) {
+    changeSlide(activeIndex - 1);
+  }
+}
+
+function findActiveSlideIndex() {
+  const slides = document.querySelectorAll(".slide");
+  for (let i = 0; i < slides.length; i++) {
+    if (slides[i].classList.contains("active")) {
+      return i;
+    }
+  }
+  return -1;
 }
