@@ -205,12 +205,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const containerBrothSlideItem = document.getElementById("broth-carousel");
   containerBrothSlideItem.addEventListener("itemSelected", (event) => {
     order.brothId = event.detail.brothItem;
-    console.log("Selected item data:", order.brothId);
   });
 
   const containerMeatSlideItem = document.getElementById("meat-carousel");
   containerMeatSlideItem.addEventListener("meatItemSelected", (event) => {
     order.proteinId = event.detail.meatItem;
-    console.log("Selected meat item data:", order.proteinId);
   });
 });
