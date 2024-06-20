@@ -1,4 +1,4 @@
-# Basic Todo App
+# Ramen Go
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/marcellevargas/ramengo-challenge?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/marcellevargas/ramengo-challenge?style=for-the-badge)
@@ -7,6 +7,9 @@
     <img src="ramengo-capture.png" alt="Ramen Go App Screenshot" width="700px">
 </div>
 
+## See the demo
+If you want to see the demo, [click here](https://ramengo-challenge.vercel.app/)
+
 ## 💻 Pre-requisites
 
 Before you start, make sure you have met the following requirements:
@@ -14,7 +17,7 @@ Before you start, make sure you have met the following requirements:
 - Did you install the latest version of node.js ?
 If not, please visit [Node.js](https://nodejs.org/en/download/package-manager/current) and install.
 
-## 🚀 Running Project Basic Todo App
+## 🚀 Running Project
 
 Follow these steps to run the project
 
