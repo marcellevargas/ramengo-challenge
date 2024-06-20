@@ -7,7 +7,7 @@
     <img src="ramengo-capture.png" alt="Ramen Go App Screenshot" width="700px">
 </div>
 
-## See the demo
+## 🍜 See the demo
 If you want to see the demo, [click here](https://ramengo-challenge.vercel.app/)
 
 ## 💻 Pre-requisites
