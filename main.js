@@ -136,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
   logo.src = logoRamemGo;
   logo.alt = "ramem go logo";
   ilustrationImage.src = ilustration;
-  ilustrationImage.alt = "woman delivering food"
 
   [orderButton, finishOrderButton].forEach((button) =>
     button.addEventListener("click", handleClick)
