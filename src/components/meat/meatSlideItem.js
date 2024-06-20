@@ -42,6 +42,7 @@ export function createMeatSlide(data) {
 
     const img = document.createElement("img");
     img.src = item.imageActive;
+    img.alt = `image of ${item.name}`;
     img.className = "card-image";
 
     const body = document.createElement("div");

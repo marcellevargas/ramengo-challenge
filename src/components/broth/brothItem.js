@@ -18,6 +18,7 @@ export function createBrothItem(data) {
 
     const img = document.createElement("img");
     img.src = item.imageInactive;
+    img.alt = `image of ${item.name}`;
     img.className = "card-image";
 
     const body = document.createElement("div");
