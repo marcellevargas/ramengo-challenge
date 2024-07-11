@@ -33,7 +33,7 @@ npm run dev
 
 ## 🤝 Developer
 
-This project it was develop by:
+This project was develop by:
 
 <table>
   <tr>
